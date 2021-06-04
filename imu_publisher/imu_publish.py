@@ -17,10 +17,14 @@ def serial_read():
     imu_data_output = imu_data.readline()
     return json.loads(imu_data_output)
 
+def do_the_meth(data):
+    return data
+
 def publish_vals():
     data = json.loads(serial_read())
     imu_msg = Twist()
 
+    data = do_the_meth(data)
     imu_msg.linear.x = data['linear']['x']
     imu_msg.linear.y = data['linear']['y']
     imu_msg.linear.z = data['linear']['z']
