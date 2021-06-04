@@ -18,6 +18,10 @@ def serial_read():
     return json.loads(imu_data_output)
 
 def do_the_meth(data):
+    """
+        TODO Convert acc gyro, and magnetometer to something compatible with Twist
+    """
+
     return data
 
 def publish_vals():
