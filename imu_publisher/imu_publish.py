@@ -20,15 +20,14 @@ def serial_read():
 def publish_vals():
     data = json.loads(serial_read())
     imu_msg = Twist()
-    smth = 'to be fileld'
 
-    imu_msg.linear.x = smth
-    imu_msg.linear.y = smth
-    imu_msg.linear.z = smth
+    imu_msg.linear.x = data['linear']['x']
+    imu_msg.linear.y = data['linear']['y']
+    imu_msg.linear.z = data['linear']['z']
 
-    imu_msg.angular.x = smth
-    imu_msg.angular.y = smth
-    imu_msg.angular.z = smth
+    imu_msg.angular.x = data['angular']['x']
+    imu_msg.angular.y = data['angular']['y']
+    imu_msg.angular.z = data['angular']['z']
 
     imu_topic_publisher.publish(imu_msg)
 
