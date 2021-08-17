@@ -5,7 +5,7 @@
 
   <!-- Arguments -->
   <!-- AMCL -->
-  <node pkg="amcl" type="amcl" name="amcl">
+  <node pkg="amcl" type="amcl" name="amcl" output="screen">
   <remap from="scan" to="ebot/laser/scan" />
   <remap from="cmd_vel" to="cmd_vel"/>
   <remap from="odom" to="odom" />
