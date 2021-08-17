@@ -1,0 +1,5 @@
+recovery_behaviour_enabled: true
+#controller_frequency: 2 
+NavfnROS:
+allow_unknown: false # Specifies whether or not to allow navfn to create plans that traverse unknown space.
+default_tolerance: 0.2 # A tolerance on the goal point for the planner.

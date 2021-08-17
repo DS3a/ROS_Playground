@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+    <include file="$(find ebot_description)/launch/ps3.launch" />
+    <include file="$(find ebot_description)/launch/ebot_visualize.launch" />
+    <include file="$(find move_to_point)/launch/amcl.launch" />
+    <include file="$(find move_to_point)/launch/move_base.launch" />
+</launch>
