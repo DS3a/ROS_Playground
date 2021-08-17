@@ -1,4 +1,5 @@
-recovery_behaviour_enabled: true
+controller_frequency: 5.0
+recovery_behaviour_enabled: false
 cost_factor: 0.55
 neutral_cost: 66
 
@@ -13,15 +14,18 @@ DWAPlannerROS:
   # Robot configuration parameters  
   acc_lim_x: 2.5
   acc_lim_y: 0
-  acc_lim_th: 600
-
+  acc_lim_th: 3.2
+  max_vel_x: 0.5
+  min_vel_x: 0.0
+  max_vel_y: 0
+  min_vel_y: 0
   path_distance_bias: 0.01
   goal_distance_bias: 0.1
 
-  max_vel_trans: 0.1
-  min_vel_trans: 0.01
-  max_vel_rot: 30000000000.0
-  min_vel_rot: 20000000000.0
+  max_vel_trans: 0.5
+  min_vel_trans: 0.0
+  max_vel_theta: 1.0
+  min_vel_theta: 0.2
 
   # Goal Tolerance Parameters
   yaw_goal_tolerance: 0.1
