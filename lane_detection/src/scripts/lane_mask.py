@@ -23,25 +23,41 @@ def RGB_to_Grayscale(img):
 	grayscale_img=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 	return grayscale_img
 
-# Define a function to show the image in an OpenCV Window
-def show_image(img):
-	cv2.imshow("Image Window", img)
-	cv2.waitKey(3)
+
+def region_of_interest(img):
+    # Define a blank matrix that matches the image height/width.
+    mask = np.zeros_like(img)
+    # Retrieve the number of color channels of the image.
+
+    match_mask_color = 255
+    (height, width) = img.shape
+    # Fill polygon
+    points = np.array([[[0,height],
+        [int(width/4),int(height/2.6)],
+        [int(width/2),int(height/5.5)],
+        [int(width - (width/4)),int(height/2.6)],
+        [width,height]]]) 
+    cv2.drawContours(mask, [points], -1, (255, 255, 255), -1, cv2.LINE_AA)
+
+    # Returning the image only where mask pixels match
+    masked_image = cv2.bitwise_and(img, mask)
+    return masked_image
 
 
 def Lane_detect(frame):
     hsv=cv2.cvtColor(frame,cv2. COLOR_BGR2HSV)
 
-    low_grey=np.array([0,0,10])
-    up_grey=np.array([100,100,75])
+    low_grey=np.array([0,0,0])
+    up_grey=np.array([150,150,100])
     mask=cv2.inRange(hsv,low_grey,up_grey)
     edges=cv2.Canny(mask,75,150)
 
     gray_image = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-    blur = cv2.GaussianBlur(gray_image, (5, 5), 0)
+    blur = cv2.GaussianBlur(mask, (5, 5), 20)
     canny = cv2.Canny(blur, 50, 150)
     
-    image_message = bridge.cv2_to_imgmsg(mask, encoding="passthrough")
+    cropped = region_of_interest(blur)
+    image_message = bridge.cv2_to_imgmsg(cropped, encoding="passthrough")
     masked_publisher.publish(image_message)
 
 
