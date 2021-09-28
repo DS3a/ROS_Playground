@@ -33,9 +33,9 @@ def region_of_interest(img):
     (height, width) = img.shape
     # Fill polygon
     points = np.array([[[0,height],
-        [int(width/4),int(height/2.6)],
-        [int(width/2),int(height/5.5)],
-        [int(width - (width/4)),int(height/2.6)],
+        [int(width/3),int(height/2.4)],
+        [int(width/2),int(height/4)],
+        [int(width - (width/3)),int(height/2.4)],
         [width,height]]]) 
     cv2.drawContours(mask, [points], -1, (255, 255, 255), -1, cv2.LINE_AA)
 
