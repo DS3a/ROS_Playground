@@ -3,9 +3,10 @@
 import rospy
 from geometry_msgs.msg import Twist
 import serial
+import json
 
 rospy.init_node("bot_teleop", anonymous=False)
-SERIAL_PORT = "/dev/ttyUSB0"
+SERIAL_PORT = "/dev/ttyACM0"
 
 MAX_SPEED = 180
 MAX_ANGULAR_SPEED = 255 - MAX_SPEED
@@ -27,7 +28,6 @@ def callback(data: Twist):
         "left_speed": int(left_speed),
         "right_speed": int(right_speed)
         }
-    ser.write(str(speed).encode())
+    ser.write(json.dumps(speed).encode('ascii'))
 
 rospy.Subscriber("/cmd_vel", Twist, callback)
-
