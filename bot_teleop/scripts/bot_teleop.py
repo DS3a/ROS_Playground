@@ -30,4 +30,6 @@ def callback(data: Twist):
         }
     ser.write(json.dumps(speed).encode('ascii'))
 
-rospy.Subscriber("/cmd_vel", Twist, callback)
+if __name__ == "__main__":
+    rospy.Subscriber("/cmd_vel", Twist, callback)
+    rospy.spin()
