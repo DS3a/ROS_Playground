@@ -28,7 +28,7 @@ def callback(data: Twist):
         "left_speed": int(left_speed),
         "right_speed": int(right_speed)
         }
-    ser.write(json.dumps(speed).encode('ascii'))
+    ser.writeline(json.dumps(speed).encode('ascii'))
     print(json.dumps(speed).encode("ascii"))
 
 if __name__ == "__main__":
