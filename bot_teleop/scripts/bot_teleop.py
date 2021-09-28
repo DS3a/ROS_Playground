@@ -31,7 +31,7 @@ def callback(data: Twist):
     ser.write(json.dumps(speed).encode('ascii'))
     a = ser.read()
     if a:
-        print(a)
+        print(a.decode('ascii'))
 
 if __name__ == "__main__":
     rospy.Subscriber("/cmd_vel", Twist, callback)
